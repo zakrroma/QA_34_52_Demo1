@@ -2,6 +2,12 @@
 
 <suite name="Suite1" verbose="1">
     <test name="NoPackage">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <exclude name="regress"/>
+            </run>
+        </groups>
         <classes>
             <class name="tests.PracticeFormTests"/>
         </classes>
