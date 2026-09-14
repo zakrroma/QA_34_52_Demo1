@@ -22,3 +22,9 @@ dependencies {
 test {
     useTestNG()
 }
+
+tasks.register('smoke', Test) {
+    useTestNG() {
+        suites 'src/test/resources/smoke.xml'
+    }
+}
