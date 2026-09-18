@@ -37,16 +37,13 @@ public class PracticeFormTests extends AppManager {
                 .state(StateCity.NCR.getState())
                 .city(StateCity.NCR.getCity()[0])
                 .build();
-//        HomePage homePage = new HomePage(getDriver());
-//        homePage.clickBtnForms();
         new HomePage(getDriver()).clickBtnForms();
         new FormsPage(getDriver()).clickBtnPracticeForm();
         PracticeFormPage practiceFormPage =
                 new PracticeFormPage(getDriver());
         practiceFormPage.typePracticeForm(student);
-//        Assert.assertTrue(practiceFormPage
-//                .validateModalMessage("Wrong"), "Wrong test");
         System.out.println("test working");
+        practiceFormPage.pause(1000);
         Assert.assertTrue(practiceFormPage
                 .validateModalMessage("Thanks for submitting the form"));
     }
@@ -75,9 +72,7 @@ public class PracticeFormTests extends AppManager {
         PracticeFormPage practiceFormPage =
                 new PracticeFormPage(getDriver());
         practiceFormPage.typePracticeForm(student);
-//        softAssert.assertTrue(practiceFormPage
-//                .validateModalMessage("Wrong"), "Wrong test");
-//        System.out.println("test working");
+        practiceFormPage.pause(1000);
         softAssert.assertTrue(practiceFormPage
                 .validateModalMessage("Thanks for submitting the form"),
                 "validate right message" );

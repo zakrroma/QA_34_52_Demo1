@@ -44,7 +44,7 @@ public class PracticeFormPage extends BasePage {
     WebElement modalMessage;
 
 
-    public void typePracticeForm(Student student){
+    public void typePracticeForm(Student student) {
         inputFirstName.sendKeys(student.getFirstName());
         inputLastName.sendKeys(student.getLastName());
         inputEmail.sendKeys(student.getEmail());
@@ -55,17 +55,17 @@ public class PracticeFormPage extends BasePage {
         typeDateOfBirth(student.getDateOfBirth());
         typeSubjects(student.getSubjects());
         typeHobbies(student.getHobbies());
-        scrollActions();
+        //scrollActions();
         textareaCurAdd.sendKeys(student.getAddress());
         typeStateCity(student.getState(), student.getCity());
         btnSubmit.click();
     }
 
-    public boolean validateModalMessage(String text){
-        return  isTextInElementPresent(modalMessage, text);
+    public boolean validateModalMessage(String text) {
+        return isTextInElementPresent(modalMessage, text);
     }
 
-    private void typeStateCity(String state, String city){
+    private void typeStateCity(String state, String city) {
         inputState.sendKeys(state);
         inputState.sendKeys(Keys.ENTER);
 
@@ -73,13 +73,13 @@ public class PracticeFormPage extends BasePage {
         inputCity.sendKeys(Keys.ENTER);
     }
 
-    private void chooseGender(Gender gender){
+    private void chooseGender(Gender gender) {
         driver.findElement(By.id(gender.getLocator())).click();
     }
 
-    private void typeHobbies(List<Hobbies> hobbies){
-        for (Hobbies h: hobbies){
-            switch (h){
+    private void typeHobbies(List<Hobbies> hobbies) {
+        for (Hobbies h : hobbies) {
+            switch (h) {
                 case SPORTS -> driver.findElement(By.id(h.getLocator())).click();
                 case READING -> driver.findElement(By.id(h.getLocator())).click();
                 case MUSIC -> driver.findElement(By.id(h.getLocator())).click();
@@ -87,7 +87,7 @@ public class PracticeFormPage extends BasePage {
         }
     }
 
-    private void typeDateOfBirth(String dateOfBirth){
+    private void typeDateOfBirth(String dateOfBirth) {
         inputDateOfBirth.click();
         String operationSystem = System.getProperty("os.name");
         System.out.println(operationSystem);
@@ -99,10 +99,10 @@ public class PracticeFormPage extends BasePage {
         inputDateOfBirth.sendKeys(Keys.ENTER);
     }
 
-    private void typeSubjects(String subjects){
+    private void typeSubjects(String subjects) {
         inputSubjects.click();
         String[] strSub = subjects.trim().split(",");
-        for (String s: strSub){
+        for (String s : strSub) {
             inputSubjects.sendKeys(s);
             inputSubjects.sendKeys(Keys.ENTER);
         }

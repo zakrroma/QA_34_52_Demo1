@@ -25,6 +25,12 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
       - name: Build with Gradle Wrapper
         run: .\gradlew clean smoke
+      - name: Show test reports
+        if: always()
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path build/reports/tests/scope -Recurse
+          Get-Content build/test-results/smoke/*.xml
       - name: Upload Test Reports
         if: always()
         uses: actions/upload-artifact@v4
