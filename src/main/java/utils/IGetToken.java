@@ -18,7 +18,7 @@ public interface IGetToken extends BaseApi {
         RequestBody requestBody = RequestBody.create(GSON.toJson(user), JSON);
 
         Request request = new Request.Builder()
-                .url(BASE_URL + LOGIN_URL)
+                .url(BASE_URL + TOKEN_URL)
                 .post(requestBody)
                 .build();
 
@@ -34,10 +34,9 @@ public interface IGetToken extends BaseApi {
 
         try {
             tokenDto = GSON.fromJson(response.body().string(), TokenDto.class);
+            return tokenDto;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return tokenDto;
     }
 }

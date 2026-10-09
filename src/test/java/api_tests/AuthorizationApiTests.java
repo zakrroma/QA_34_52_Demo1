@@ -1,5 +1,6 @@
 package api_tests;
 
+import dto.CreateUserResult;
 import dto.UserData;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 import static utils.UserFactory.*;
 
-public class AuthorizationTests implements BaseApi {
+public class AuthorizationApiTests implements BaseApi {
     @Test
     public void registrationPositiveTest() {
         UserData user = positiveUser();
@@ -26,11 +27,16 @@ public class AuthorizationTests implements BaseApi {
 
         Response response;
 
+        CreateUserResult result;
+
         try {
             response = OK_HTTP_CLIENT.newCall(request).execute();
+            result = GSON.fromJson(response.body().string(), CreateUserResult.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println(result);
 
         Assert.assertEquals(response.code(), 201);
     }
